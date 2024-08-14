@@ -103,7 +103,35 @@ dog1.instance_variable_get("@name")
 dog1.instance_eval("@name")
 dog1.instance_eval { @name }
 
+class Dog7
+  attr_reader :name
+
+  def initialize(initial_name)
+    @name = initial_name
+  end
+
+  def get_self
+    self # refers to containing object
+  end
+
+  def to_s # used in string interpolation, supported by all Object
+    @name
+  end
+
+  def inspect # supported by all Object. Provide more complete string version
+    "<Dog named '#{name}'>"
+  end
+end
+
 # to_s is used in string manipulation
-dog1 = Dog.new
+dog1 = Dog7.new
 "My dog name is #{dog1}" # it calls dog1.to_s
+
+# Array
+[1,2,3].to_s # "[1, 2, 3]"
+[1,2,3].inspect # "[1, 2, 3]"
+
+# String
+"String".to_s # "String"
+"String".inspect # "\"String\""
 ```
