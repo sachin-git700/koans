@@ -184,3 +184,49 @@ a.equal?(b) # false
 a.eql?(a_copy) # true
 a.eql?(b) # true
 ```
+
+### Expections
+
+```ruby
+# ancestors
+# - returns an array of modules and classes that are in the inheritance chain of the class (or module) it is called on
+# - This includes the class itself, its parent classes, and any modules that have been mixed in via include or extend.
+
+Dog.ancestors
+# [Dog, Object, JSON::Ext::Generator::GeneratorMethods::Object, PP::ObjectMixin, Kernel, BasicObject]
+
+RuntimeError.ancestors
+# [RuntimeError, StandardError, Exception, Object, JSON::Ext::Generator::GeneratorMethods::Object, PP::ObjectMixin, Kernel, BasicObject]
+
+# -------------------
+
+# 'raise' and 'fail' are synonyms/alias
+# it is used to raise RuntimeError
+fail "Oops" # raises RuntimeError with message "Oops"
+raise "Oops"
+
+begin
+  fail "Oops"
+rescue StandardError => ex # ex.class = RuntimeError
+  result = :exception_handled
+end
+
+result = nil
+begin
+  fail "Oops"
+rescue StandardError
+  # no code here
+ensure # like javascript finally
+  result = :always_run
+end
+
+
+is_a? # looks in the inheritance chain (the one returned by .ancestors)
+RuntimeError.new.is_a?(StandardError) # true # true
+RuntimeError.new.is_a?(Exception) # true
+RuntimeError.new.is_a?(Object) # true
+RuntimeError.new.is_a?(JSON::Ext::Generator::GeneratorMethods::Object) # true
+RuntimeError.new.is_a?(PP::ObjectMixin) # true
+RuntimeError.new.is_a?(Kernel) # true
+RuntimeError.new.is_a?(BasicObject) # true
+```
