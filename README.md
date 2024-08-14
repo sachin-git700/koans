@@ -2,7 +2,7 @@
 
 ## Cheatsheet
 
-### Array
+### Array & array_assignment
 
 ```ruby
 arr = [1,2,3,4,5]
@@ -19,3 +19,5 @@ arr.push(:last)
 arr.pop
 first_name, *last_name = ["John", "Smith", "III"] # splat operator (rest operator)
 ```
+
+###
