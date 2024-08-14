@@ -75,6 +75,19 @@ SelfInsideOfClassStatement = class Dog
 LastExpressionInClassStatement # 21
 SelfInsideOfClassStatement # Dog
 
+# Interesting
+class Dog
+  attr_accessor :name, :age
+end
+# output: [:name, :name=, :age, :age=] <-- interesting output
+
+dog1 = Dog.new
+dog1.instance_variables # []
+dog1.name = "fido"
+dog1.instance_variables # [:@name] --- ????
+dog1.age = 25
+dog1.instance_variables # [:@name, :@age]
+
 # 2 main ways to define class method
 class Animal
   self.method1
@@ -85,4 +98,12 @@ class Animal
   end
 end
 
+# even if there is no getter, one can get instance variable value
+dog1.instance_variable_get("@name")
+dog1.instance_eval("@name")
+dog1.instance_eval { @name }
+
+# to_s is used in string manipulation
+dog1 = Dog.new
+"My dog name is #{dog1}" # it calls dog1.to_s
 ```
