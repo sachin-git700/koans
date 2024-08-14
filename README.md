@@ -20,4 +20,38 @@ arr.pop
 first_name, *last_name = ["John", "Smith", "III"] # splat operator (rest operator)
 ```
 
-###
+### Blocks
+
+```ruby
+yield # to execute the code of the block
+block_given? # to find if a block was given
+
+# passing arguments
+def greet
+  yield("Sachin")
+  yield("Ram")
+end
+
+greet do |value|
+  puts "Hello #{value}!!!"
+end
+
+# ^^^ this will call the greet function with the block
+# Output
+# Hello Sachin!!!
+# Hello Ram!!!
+
+# Lambda
+greet_block = lambda { |value| puts "Hi #{value}" }
+# greet greet_block
+# ^^ Error: ArgumentError, wrong number of arguments provided. Expected 0, received 1
+greet_block.call("Sachin")
+
+full_name.call(user) # one can implement this
+
+def greet2(&block)
+  block.call("Sachin")
+end
+
+greet2 &greet_block # Hi Sachin
+```
