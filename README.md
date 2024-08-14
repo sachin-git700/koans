@@ -134,4 +134,33 @@ dog1 = Dog7.new
 # String
 "String".to_s # "String"
 "String".inspect # "\"String\""
+
+# Classes inside classes is possible in Ruby
+```
+
+### Constants
+
+```ruby
+C = "top level"
+class AboutConstants
+  C = "nested"
+end
+
+# Nested constants are referenced with relative paths
+C # nested
+
+# Top level constants are referenced by double colons
+::C # "top level"
+
+class MyAnimals
+  LEGS = 2
+
+  class Bird < Animal
+    def legs_in_bird
+      LEGS
+    end
+  end
+end
+
+ MyAnimals::Bird.new.legs_in_bird # 2
 ```
