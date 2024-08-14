@@ -164,3 +164,23 @@ end
 
  MyAnimals::Bird.new.legs_in_bird # 2
 ```
+
+### Dice Project
+
+```ruby
+rand(1..6) # rolling a dice
+
+# comparing array (could be another object)
+.equal? # checks object_id
+.eql? # checks value & type
+
+a = [1,2,3]
+a_copy = a
+b = [1,2,3]
+
+a.equal?(a_copy) # true
+a.equal?(b) # false
+
+a.eql?(a_copy) # true
+a.eql?(b) # true
+```
