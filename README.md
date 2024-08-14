@@ -55,3 +55,34 @@ end
 
 greet2 &greet_block # Hi Sachin
 ```
+
+### Class & Class Methods
+
+```ruby
+is_a? # Dog.is_a?(Class), Dog.is_a?(Object)
+dog1.is_a?(Object)
+Dog.methods.size
+Dog.new.methods.size
+User.new.abc # NoMethodError class
+
+# class statements return the value of their last expression
+LastExpressionInClassStatement = class Dog
+                                     21
+                                   end
+SelfInsideOfClassStatement = class Dog
+                                self
+                              end
+LastExpressionInClassStatement # 21
+SelfInsideOfClassStatement # Dog
+
+# 2 main ways to define class method
+class Animal
+  self.method1
+
+  class << self
+    def method2
+    end
+  end
+end
+
+```
