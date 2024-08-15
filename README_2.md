@@ -81,3 +81,9 @@ catcher = AllMessageCatcher.new
 catcher.foo(1,2)
 
 ```
+
+### Methods
+
+```ruby
+eval # to evaluate a string; dangerous!
+```
