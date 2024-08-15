@@ -2,7 +2,7 @@
 
 ## Cheatsheet
 
-### interoperability
+### interoperability - JRuby
 
 ```ruby
 include Java
