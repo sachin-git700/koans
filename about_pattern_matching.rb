@@ -10,7 +10,7 @@ class AboutPatternMatching < Neo::Koan
       end
     rescue Exception => ex
       # What exception has been caught?
-      assert_equal __, ex.class
+      assert_equal NoMatchingPatternError, ex.class
     end
   end
 
