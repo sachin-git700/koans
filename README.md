@@ -329,3 +329,51 @@ end
 gd = GreatDane.new
 gd.growl # NoMethodError. 'growl' no superclass method growl
 ```
+
+### Iteration
+
+Important terms: Enumerable
+
+```ruby
+# Important concept
+Enumerable.instance_methods.include?(:map) # true
+Enumerable.instance_methods.include?(:select) # true
+Enumerable.instance_methods.include?(:find) # true
+
+Enumerable.instance_methods.include?(:each) # false
+Array.instance_methods.include?(:each) # true
+
+# Why "each" is part of Array and not Enumerable class
+# - The Enumerable module provides a collection of methods that allow us to iterate over a collection.
+# - Enumerable itself does not define how to iterate over elements.
+# - Instead, it requires the class that includes Enumerable to define an each method.
+# - Why?
+# - Enumerable is designed to be included in many different kinds of collections (arrays, hashes, ranges, etc.), it leaves the actual implementation of each to the including class.
+
+class Array
+  include Enumerable
+
+  def each
+    # each method logic goes here
+  end
+end
+
+# iterating over a collection vs iterating over elements
+array.each do |element|
+  puts element
+end
+# - The each method is responsible for iterating over the collection.
+# - The block { |element| puts element } is responsible for iterating over each element (specifically, outputting each one).
+
+# In other words
+# - Iterating over the collection means looping through the array itself, from start to finish.
+# - Iterating over elements focuses on what happens when you get to each individual number (1, 2, 3, etc.) in that array.
+
+# Note
+# break works in each style iterators
+# aliases:
+# - map & collect
+# - select & find_all
+# - reduce & inject -> [2, 3, 4].inject(0) { |sum, item| sum + item }
+
+```
