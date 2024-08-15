@@ -136,6 +136,13 @@ dog1 = Dog7.new
 "String".inspect # "\"String\""
 
 # Classes inside classes is possible in Ruby
+
+# Classes
+# BasicObject, Object, Kernel
+# NilClass
+
+# Modules
+# Kernel
 ```
 
 ### Constants
