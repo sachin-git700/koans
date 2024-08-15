@@ -506,5 +506,14 @@ ArgumentError # if number of arguments are less or more - Runtime error and not 
 include
 prepend
 .new # NoMethodError -> Modules can't be instantiated
+```
 
+### Nil
+
+```ruby
+nil.methods # returns a lot of methods, which makes sense as it inherits from Object
+NilClass.class.instance_methods
+nil.nil?
+nil.to_s # ""
+nil.inspect # "nil"
 ```
