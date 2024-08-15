@@ -538,3 +538,18 @@ obj.object_id != copy.object_id # true
 a = 1 # a.object_id = 3
 b = a.clone # b.object_id = 3
 ```
+
+### Open Classes
+
+One can open any class to add more constants & methods.
+
+```ruby
+class ::Integer
+  def answer_to_life_universe_and_everything?
+    self == 42
+  end
+end
+
+1.answer_to_life_universe_and_everything? # false
+42.answer_to_life_universe_and_everything? # true
+```
