@@ -96,5 +96,8 @@ ArgumentError # if number of arguments are less or more - Runtime error and not 
 ### Modules
 
 ```ruby
+include
+prepend
+.new # NoMethodError -> Modules can't be instantiated
 
 ```
