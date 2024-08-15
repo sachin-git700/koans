@@ -517,3 +517,24 @@ nil.nil?
 nil.to_s # ""
 nil.inspect # "nil"
 ```
+
+### Objects
+
+```ruby
+# Everything is an object - Prove
+1.is_a?(Object) # 1.object_id
+1.5.is_a?(Object)
+
+# For integer, object_id = 2n+1
+1.object_id # 3
+2.object_id # 5
+100.object_id # 201
+
+# clone
+obj = Object.new
+copy = obj.clone
+obj.object_id != copy.object_id # true
+# Note: clone won't work for integer as they have a fix object_id
+a = 1 # a.object_id = 3
+b = a.clone # b.object_id = 3
+```
