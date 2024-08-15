@@ -230,3 +230,81 @@ RuntimeError.new.is_a?(PP::ObjectMixin) # true
 RuntimeError.new.is_a?(Kernel) # true
 RuntimeError.new.is_a?(BasicObject) # true
 ```
+
+### Hashes
+
+```ruby
+hash.size
+hash[:key1]
+hash.fetch(:key1) # Error raise: KeyError
+hash.class # Hash
+hash.merge({ ... }) # does not modify hash
+hash.merge!({ ... }) # modifies hash
+Hash.new # creates a new hash
+Hash.new("dos") # default value | hash1[:non_existence_key] -> dos
+
+hash = Hash.new
+hash.default = "dos"
+
+# important - 1
+hash = Hash.new([]) # default value is []
+hash[:one] << "uno" # hash[:one] returns default value [] & "uno" is pushed to it
+hash[:two] << "dos"
+hash[:three] # output -> ["uno", "dos"]
+
+# important - 2
+# for default or non existing value the block will be ran
+# which mean for every new key a new empty array will be returned
+hash = Hash.new {|hash, key| hash[key] = [] }
+hash[:one] << "uno"
+hash[:two] << "dos"
+hash # { :one => ["uno"], :two => ["dos"] }
+hash[:three] # [] -> block ran to return default value
+
+---------------------------------------------
+hash = {}
+hash.fetch(:key1) # Error raise: KeyError
+KeyError.ancestors
+# [DidYouMean::Correctable, KeyError, IndexError, StandardError, Exception, Object, JSON::Ext::Generator::GeneratorMethods::Object, PP::ObjectMixin, Kernel, BasicObject]
+
+# Error Classes
+KeyError
+IndexError
+StandardError
+Exception
+```
+
+### Ancestors (include vs prepend)
+
+```ruby
+class Animal
+end
+
+module Mammal
+  def fly
+    puts "Mammal is flying..."
+  end
+end
+
+module Organism
+  def fly
+    puts "Organism is flying"
+  end
+end
+
+
+class Cat < Animal
+  prepend Mammal
+  include Organism
+
+  def fly
+    puts "Cat is flying..."
+  end
+end
+
+Cat.ancestors
+# [Mammal, Cat, Organism, Animal, Object, JSON::Ext::Generator::GeneratorMethods::Object, PP::ObjectMixin, Kernel, BasicObject]
+cat1 = Cat.new
+cat1.fly # "Mammal is flying..."
+
+```
