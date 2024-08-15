@@ -86,4 +86,9 @@ catcher.foo(1,2)
 
 ```ruby
 eval # to evaluate a string; dangerous!
+
+def method_1; end
+private method_1
+NoMethodError # error raised when private method is called
+ArgumentError # if number of arguments are less or more - Runtime error and not Syntax error
 ```
