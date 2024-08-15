@@ -10,6 +10,14 @@ arr = [1,2,3,4,5]
 arr.slice(2,2) # [3, 4] # i.e., start with 2 and take 2 elements
 arr[2..4] # [3, 4, 5] # 2..4 -> Range class - Slicing with range
 arr[2...4] # [3, 4]
+
+# method_name = find_by_product_name -> get "product_name"
+method_name.slice(8..-1) # product_name
+method_name[8..-1] # product_name
+method_name.split('_', 3).last # product_name
+
+method_name.split('_', 3) # ["find", "by", "product_name"]
+
 (1..5).to_a # [1,2,3,4,5]
 first_name, last_name = last_name, first_name # swapping elements
 arr << 333 # [1,2,3,4,5,333]

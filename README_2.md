@@ -64,6 +64,15 @@ class AllMessageCatcher
       puts "defined #{method_name} with args #{args}"
     end
 
+    # find_by_name dynamic methods creation
+    #  def method_missing(method_name, *args, &block)
+    #   if method_name.to_s[0,7] == "find_by" && check_if_valid_column(method_name)
+    #     code goes here...
+    #   else
+    #     super(method_name, *args, &block)
+    #   end
+    # end
+
     send(method_name, *args)
   end
 end
