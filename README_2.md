@@ -92,3 +92,9 @@ private method_1
 NoMethodError # error raised when private method is called
 ArgumentError # if number of arguments are less or more - Runtime error and not Syntax error
 ```
+
+### Modules
+
+```ruby
+
+```
