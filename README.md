@@ -8,15 +8,15 @@
 arr = [1,2,3,4,5]
 
 arr.slice(2,2) # [3, 4] # i.e., start with 2 and take 2 elements
-arr[2..4] # [3, 5] # 1..2 -> Range class - Slicing with range
+arr[2..4] # [3, 4, 5] # 2..4 -> Range class - Slicing with range
 arr[2...4] # [3, 4]
 (1..5).to_a # [1,2,3,4,5]
 first_name, last_name = last_name, first_name # swapping elements
 arr << 333 # [1,2,3,4,5,333]
 arr.unshift(0) # adds element at the beginning
 arr.shift # adds element at the end
-arr.push(:last)
-arr.pop
+arr.push(:last) # returns entire array
+last_element = arr.pop
 first_name, *last_name = ["John", "Smith", "III"] # splat operator (rest operator)
 ```
 
@@ -272,6 +272,7 @@ KeyError
 IndexError
 StandardError
 Exception
+NoMethodError
 ```
 
 ### Ancestors (include vs prepend)
@@ -307,4 +308,24 @@ Cat.ancestors
 cat1 = Cat.new
 cat1.fly # "Mammal is flying..."
 
+```
+
+### inheritance
+
+```ruby
+# Inheritance does not work cross method
+class Dog
+  def bark
+    "WOOF"
+  end
+end
+
+class GreatDane < Dog
+  def growl
+    super.bark + ", GROWL"
+  end
+end
+
+gd = GreatDane.new
+gd.growl # NoMethodError. 'growl' no superclass method growl
 ```
