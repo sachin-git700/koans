@@ -335,6 +335,8 @@ gd.growl # NoMethodError. 'growl' no superclass method growl
 Important terms: Enumerable
 
 ```ruby
+# map (collect) select (find_all), reduce(0) (inject(0)), find
+
 # Important concept
 Enumerable.instance_methods.include?(:map) # true
 Enumerable.instance_methods.include?(:select) # true
@@ -342,6 +344,9 @@ Enumerable.instance_methods.include?(:find) # true
 
 Enumerable.instance_methods.include?(:each) # false
 Array.instance_methods.include?(:each) # true
+
+# important
+# Array.instance_methods === Array.new.instance_methods
 
 # Why "each" is part of Array and not Enumerable class
 # - The Enumerable module provides a collection of methods that allow us to iterate over a collection.
@@ -376,4 +381,15 @@ end
 # - select & find_all
 # - reduce & inject -> [2, 3, 4].inject(0) { |sum, item| sum + item }
 
+Array.ancestors
+# [Array, JSON::Ext::Generator::GeneratorMethods::Array, Enumerable, Object, JSON::Generator::GeneratorMethods::Object, PP:ObjectMixin, Kernel, BasicObject]
+
+Enumerable.ancestors
+# [Enumerable]
+# Enumerable.new.methods or Enumerable.instance_methods
+
+# this way closes the file after block has executed, even if there was an exception
+File.open('filename') do |file|
+  # code to read 'file'
+end
 ```
