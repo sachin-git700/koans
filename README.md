@@ -8,6 +8,7 @@
 arr = [1,2,3,4,5]
 
 arr.slice(2,2) # [3, 4] # i.e., start with 2 and take 2 elements
+arr[2,2] # [3, 4] - same as slice
 arr[2..4] # [3, 4, 5] # 2..4 -> Range class - Slicing with range
 arr[2...4] # [3, 4]
 
@@ -713,4 +714,53 @@ Write test cases first. Test cases will tell you what code to write. It basicall
 
 ```ruby
 # Red, Green, Refactor -> TDD
+```
+
+### String
+
+```ruby
+[].is_a?(Object) # true
+[].kind_of?(Object) # true
+[].instance_of?(Object) # true
+
+a = %{flexible quotes can handle both ' and " characters;
+and also new line
+}
+b = <<EOS # End Of String, differs from flexible quotes in terms of \n only
+It is good.
+It is bad.
+EOS
+
+hello = "Hello, "
+world = "World"
+hello += "World" # "Hello, World"
+hello << "World" # "Hello, World"
+
+string = "\n" # output: "\n", length 1
+string = '\n' # output: "\\n", length 2 -> \ is treated as literal \ and not a new line, single quotes does not interpret escape charaters
+string = '\\\'' # output: "\\'" -> single character only escapes \', as it things that ' might have been escaped to avoid unintentional string termination
+
+string = "Hello"
+string[1,2] # "el"
+string[1..2] # "el"
+
+?a # "a"
+?a == 97 # false
+?a.ord # 97
+"a".ord # 97
+"hello world".count
+"the:rain:in:spain".split(/:/) # ["the", "rain", "in", "spain"]
+
+```
+
+### Performance
+
+```ruby
+# string concatination
++= vs << # prefer << as it mutates current string & does not create a new string. No memeory rellocation.
+
+# SQL query optimization
+# exists? - eg. whether any employee exists who has not been assigned any project
+
+# SQL optimization
 ```
