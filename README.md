@@ -645,5 +645,46 @@ end
 
 # gsub - like find & replace all
 "one two-three".sub(/(t\w*)/) { $1[0, 1] } # "one t-t"
+```
 
+### Sandwich code
+
+```ruby
+# Sandwich code
+# some code needs to run at begin & some at end, the middle can differ
+# eg: open a file, do something, close -> "do something" can change, open & close code remains same
+
+
+def count_lines(file_name)
+  file = open(file_name)
+  count = 0
+
+  while line = file.gets
+    count += 1
+  end
+  count
+ensure
+  file.close if file
+end
+
+# -----------------
+def file_sandwich(file_name)
+  file = open(file_name)
+  yield(file)
+ensure
+  file.close if file
+end
+
+def count_lines2(file_name)
+  file_sandwich(file_name) do |file|
+    # rest of the code...
+  end
+end
+
+# ----------------------------------------------
+
+# best way - use block
+open(file_name) do |file|
+  # code goes here
+end # closes file (even if there are error while processing file)
 ```
