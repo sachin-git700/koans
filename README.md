@@ -688,3 +688,19 @@ open(file_name) do |file|
   # code goes here
 end # closes file (even if there are error while processing file)
 ```
+
+### Scope
+
+```ruby
+# access instance variables
+Dog.new.instance_variable_get("@name")
+Dog.const_get("PI") # get a constant variable explicitly
+Dog.constants # get all constants
+
+# Note: class names are just constants
+module A
+  class B
+  end
+end
+A.constants # [:B]
+```
