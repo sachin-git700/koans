@@ -582,3 +582,68 @@ w1.send(:greet, "Alice", "Bob") do ||
 end
 # ----------------- USING SEND METHOD END ------------------------
 ```
+
+### Regular Expression
+
+```ruby
+# d - digit, D - not digit
+# s - whitespace, S - not whitespace
+# w - word character, W - not character; [a-zA-Z0-9_]
+# [^0-9] - ^ negate i.e., not containing number
+
+# Regexp - Regex Pattern class
+/anything/.class # Regexp
+"abc def"[/de/] # de
+""[/abc/] # nil
+
+# match must start from beginning of string - use anchor (A); z for end
+"start end"[/start/] # "start"
+"start end"[/end/] # "end"
+"start end"[/\Astart/] # "start"
+"start end"[/\Aend/] # nil
+"start end"[/end\z/] # "end"
+
+# ?/+/* (optional, one or more, zero or more)
+"aaabcde"[/ab?/] # "a" -> matches from L to R, and stops at first match. b is optional so "a" is the first match
+"aaabcde"[/bc?/] # "bc"
+"aaabcccde"[/bc+/] # "bccc"
+"aaabde"[/bc*/] # "b"
+"aaabde"[/bc*d/] # "bd"
+
+# select all words that ends with "at" & first letter is in "cbr"
+["cat", "bat", "rat", "zat"].select { |w| w[/^[cbz]at/] } # ["cat", "bat", "rat"]
+
+# Caret "^", dollar "$", \b - word boundary,
+"variable_1 = 42"[/[^a-zA-Z0-9_]+/] # " = " -> here negate
+"num 42\n2 lines"[/^\d+/] # "2" -> caret anchors to start of lines
+"42", "2 lines\nnum 42"[/\d+$/] # "42"
+"bovine vines"[/\bvine./] # "vines" -> word boundary
+
+# group content
+"ahahaha"[/(ha)+/] # "hahaha"
+
+# digits
+# /[0123456789]/ -> returns only one matching
+# /[0123456789]+/ -> 1 or more match
+"the number is 42"[/[0123456789]+/] # 42
+"the number is 42"[/[0-9]+/] # 42
+"the number is 42"[/\d+/]
+
+# whitespace i.e., space, tab, newline
+" \t\n", "space: \t\n"[/\s+/]
+
+# word character
+"variable_1 = 42", "variable_1 = 42"[/[a-zA-Z0-9_]+/] # "variable_1"
+"variable_1 = 42", "variable_1 = 42"[/\w+/] # "variable_1"
+
+"variable_1 = 42".[/[a-zA-Z0-9_]+/] # "variable_1"
+"variable_1 = 42".match(/[a-zA-Z0-9_]+/) # "variable_1"
+"variable_1 = 42".scan(/[a-zA-Z0-9_]+/) # ["variable_1", "42"]
+
+# sub - like find & replace
+"one two-three".sub(/(t\w*)/) { $1[0, 1] } # "one t-three"
+
+# gsub - like find & replace all
+"one two-three".sub(/(t\w*)/) { $1[0, 1] } # "one t-t"
+
+```
