@@ -750,14 +750,51 @@ string[1..2] # "el"
 "a".ord # 97
 "hello world".count
 "the:rain:in:spain".split(/:/) # ["the", "rain", "in", "spain"]
-
 ```
 
+### symbols
+
+```ruby
+# Symbol class
+symbol1 = :a_symbol
+symbol2 = :a_symbol
+symbol1.object_id == symbol2.object_id # true
+"cats".to_sym # :cats
+symbol = :"cats and dogs" # :"cats and dogs"
+
+# symbol does not have string methods
+sym = :abc
+sym.respond_to?(:each_char) # false
+sym.respond_to?(:reverse) # false
+
+
+# method names become symbols
+# constants names become symbols
+# ---------- DETAIL ----------
+def hello
+end
+
+Symbol.all_symbols.map(&:to_s).include?("hello") # all method names become symbols
+Symbol.all_symbols # returns all symbols - long list - as all method names become symbols
+
+Symbol.all_symbols.map(&:to_s).include?("hello") # true
+Symbol.all_symbols.map(&:to_s).include?("hello2") # false
+Symbol.all_symbols.include?(:hello2) # true -> as during comparision, :hello2 symbol gets created and so true
+# --------------------
+```
+
+<!-- ---------------------------------------------------- -->
+<!-- ---------------------------------------------------- -->
+<!-- ---------------------------------------------------- -->
+<!-- ---------------------------------------------------- -->
+<!-- ---------------------------------------------------- -->
 ### Performance
 
 ```ruby
 # string concatination
 += vs << # prefer << as it mutates current string & does not create a new string. No memeory rellocation.
+
+# using symbols for hash - object_id remains same
 
 # SQL query optimization
 # exists? - eg. whether any employee exists who has not been assigned any project
