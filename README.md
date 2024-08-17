@@ -553,3 +553,32 @@ end
 1.answer_to_life_universe_and_everything? # false
 42.answer_to_life_universe_and_everything? # true
 ```
+
+### Proxy Object
+
+```ruby
+# ----------------- USING SEND METHOD ------------------------
+class Calculator
+  def sum(*args)
+    args
+  end
+end
+
+c1 = Calculator.new
+args = [1,2,3]
+c1.send(:sum, *args) # args will be passed as individual values instead of an array
+
+class Welcome
+  def greet(name1, name2, &block)
+    [block.call, name1, name2].join(" ")
+  end
+end
+
+w1 = Welcome.new
+block = lambda { "Hello" }
+w1.send(:greet, "Alice", "Bob", &block)
+w1.send(:greet, "Alice", "Bob") do ||
+  "Hello"
+end
+# ----------------- USING SEND METHOD END ------------------------
+```
