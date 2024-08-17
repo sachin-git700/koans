@@ -2,6 +2,14 @@
 
 ## Cheatsheet
 
+### Types of Error
+
+```ruby
+NoMethodError
+TypeError
+NameError (unintialized const Animal)
+```
+
 ### Array & array_assignment
 
 ```ruby
@@ -781,6 +789,23 @@ Symbol.all_symbols.map(&:to_s).include?("hello") # true
 Symbol.all_symbols.map(&:to_s).include?("hello2") # false
 Symbol.all_symbols.include?(:hello2) # true -> as during comparision, :hello2 symbol gets created and so true
 # --------------------
+```
+
+### to_str
+
+```ruby
+# Usage: Ruby calls to_str in cases where it expects a string-like object, such as when performing string concatenation or interpolation.
+
+"5" + 1 # `+': no implicit conversion of Integer into String (TypeError)
+# Reason: Integer class does not have to_str implemented
+
+class Integer
+  def to_str
+    to_s
+  end
+end
+
+"5" + 1 # "6" -> Works!!!
 ```
 
 <!-- ---------------------------------------------------- -->
