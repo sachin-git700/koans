@@ -704,3 +704,13 @@ module A
 end
 A.constants # [:B]
 ```
+
+### Scoring Project (Dice game)
+
+#### Important learning
+
+Write test cases first. Test cases will tell you what code to write. It basically shows that you were successfully able to break the requirement. Write some code and make them pass. Now you go back and refactor the code.
+
+```ruby
+# Red, Green, Refactor -> TDD
+```
